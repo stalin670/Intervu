@@ -27,36 +27,36 @@ const MeetingModal = ({ isOpen, onClose, title, isJoinMeeting }: MeetingModalPro
 
         setMeetingUrl("");
         onClose();
-
-        return (
-            <Dialog>
-                <DialogContent className="sm:max-w-[425px]">
-                    <DialogHeader>
-                        <DialogTitle>{title}</DialogTitle>
-                    </DialogHeader>
-
-                    <div className="space-y-4 pt-4">
-                        {isJoinMeeting && (
-                            <Input
-                                placeholder="Paste meeting link here..."
-                                value={meetingUrl}
-                                onChange={(e) => setMeetingUrl(e.target.value)}
-                            />
-                        )}
-
-                        <div className="flex justify-end gap-3">
-                            <Button variant="outline" onClick={onClose}>
-                                Cancel
-                            </Button>
-                            <Button onClick={handleStart} disabled={isJoinMeeting && !meetingUrl.trim()}>
-                                {isJoinMeeting ? "Join Meeting" : "Start Meeting"}
-                            </Button>
-                        </div>
-                    </div>
-                </DialogContent>
-            </Dialog>
-        )
     }
+
+    return (
+        <Dialog open={isOpen} onOpenChange={onClose}>
+            <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                    <DialogTitle>{title}</DialogTitle>
+                </DialogHeader>
+
+                <div className="space-y-4 pt-4">
+                    {isJoinMeeting && (
+                        <Input
+                            placeholder="Paste meeting link here..."
+                            value={meetingUrl}
+                            onChange={(e) => setMeetingUrl(e.target.value)}
+                        />
+                    )}
+
+                    <div className="flex justify-end gap-3">
+                        <Button variant="outline" onClick={onClose}>
+                            Cancel
+                        </Button>
+                        <Button onClick={handleStart} disabled={isJoinMeeting && !meetingUrl.trim()}>
+                            {isJoinMeeting ? "Join Meeting" : "Start Meeting"}
+                        </Button>
+                    </div>
+                </div>
+            </DialogContent>
+        </Dialog>
+    );
 }
 
 export default MeetingModal;
