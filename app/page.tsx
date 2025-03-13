@@ -3,11 +3,8 @@ import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@cl
 
 export default function Home() {
   return (
-    <div>
-      <h1>Hello</h1>
-      <SignInButton>
-        <Button>Login</Button>
-      </SignInButton>
+    <div className="m-10">
+      Home-Page
     </div>
   );
 }
