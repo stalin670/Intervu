@@ -26,6 +26,16 @@ export const getMyInterviews = query({
     },
 });
 
+export const getInterviewByStreamCallId = query({
+    args: { streamCallId: v.string() },
+    handler: async (ctx, args) => {
+        return await ctx.db
+            .query("interviews")
+            .withIndex("by_stream_call_id", (q) => q.eq("streamCallId", args.streamCallId))
+            .first();
+    },
+});
+
 export const createInterview = mutation({
     args: {
         title: v.string(),
@@ -42,6 +52,19 @@ export const createInterview = mutation({
 
         return await ctx.db.insert("interviews", {
             ...args,
+        });
+    },
+});
+
+export const updateInterviewStatus = mutation({
+    args: {
+        id: v.id("interviews"),
+        status: v.string(),
+    },
+    handler: async (ctx, args) => {
+        return await ctx.db.patch(args.id, {
+            status: args.status,
+            ...(args.status === "completed" ? { endTime: Date.now() } : {}),
         });
     },
 });
