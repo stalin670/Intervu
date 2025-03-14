@@ -35,7 +35,7 @@ const DashboardPage = () => {
 
     if (!interviews || !users) return <LoaderUI />;
 
-    const groupedInterviews = groupInterviews(interviews);
+    const groupedInterviews = groupInterviews(interviews) || {};
 
     return (
         <div className="container mx-auto py-10">
@@ -48,17 +48,21 @@ const DashboardPage = () => {
             <div className="space-y-8">
                 {INTERVIEW_CATEGORY.map(
                     (category) =>
-                        groupedInterviews[category.id]?.length > 0 && (
+                        (groupedInterviews?.[category.id]?.length ?? 0) > 0 && (
                             <section key={category.id}>
                                 {/* title */}
                                 <div className="flex items-center gap-2 mb-4">
                                     <h2 className="text-xl font-semibold">{category.title}</h2>
-                                    <Badge variant={category.variant}>{groupedInterviews[category.id].length}</Badge>
+                                    <Badge variant={category.variant}>{groupedInterviews?.[category.id]?.length}</Badge>
                                 </div>
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                                    {groupedInterviews[category.id].map((interview: Interview) => {
-                                        const candidateInfo = getCandidateInfo(users, interview.candidateId);
+                                    {groupedInterviews?.[category.id]?.map((interview: Interview) => {
+                                        const candidateInfo = getCandidateInfo(users, interview.candidateId) || {
+                                            name: "Unknown",
+                                            image: "",
+                                            initials: "U",
+                                        };
                                         const startTime = new Date(interview.startTime);
 
                                         return (
