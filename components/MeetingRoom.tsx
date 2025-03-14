@@ -5,6 +5,7 @@ import { LayoutListIcon, LoaderIcon, UsersIcon } from 'lucide-react';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from './ui/resizable';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from './ui/dropdown-menu';
 import { Button } from './ui/button';
+import EndCallButton from './EndCallButton';
 
 const MeetingRoom = () => {
     const router = useRouter();
@@ -72,7 +73,7 @@ const MeetingRoom = () => {
                                         <UsersIcon className="size-4" />
                                     </Button>
 
-                                    {/* <EndCallButton /> */}
+                                    <EndCallButton />
                                 </div>
                             </div>
                         </div>
