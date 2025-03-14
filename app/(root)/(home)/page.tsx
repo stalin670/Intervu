@@ -14,8 +14,7 @@ import { useState } from "react";
 export default function Home() {
   const router = useRouter();
 
-  const { isCandidate, isInterviewer, isLoading } = useUserRole();
-  const interviews = useQuery(api.interviews.getMyInterviews);
+  const { isInterviewer, isLoading } = useUserRole();
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState<"start" | "join">();
 
