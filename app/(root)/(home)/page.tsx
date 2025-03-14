@@ -4,9 +4,7 @@ import ActionCard from "@/components/ActionCard";
 import LoaderUI from "@/components/LoaderUI";
 import MeetingModal from "@/components/MeetingModal";
 import { QUICK_ACTIONS } from "@/constants";
-import { api } from "@/convex/_generated/api";
 import { useUserRole } from "@/hooks/useUserRole";
-import { useQuery } from "convex/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
